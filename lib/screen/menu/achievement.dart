@@ -15,7 +15,7 @@ class _AchievementState extends State<Achievement> {
       appBar: AppBar(
         backgroundColor: Color(0xff1C1B1F),
         title: Text(
-          'Education',
+          'Achievement',
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         leading: InkWell(

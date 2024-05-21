@@ -15,7 +15,7 @@ class _ProjectState extends State<Project> {
       appBar: AppBar(
         backgroundColor: Color(0xff1C1B1F),
         title: Text(
-          'Education',
+          'Project',
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         leading: InkWell(

@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:resume_app/screen/experince.dart';
+import 'package:resume_app/screen/menu/experince.dart';
 import 'package:resume_app/screen/menu/achievement.dart';
 import 'package:resume_app/screen/menu/education.dart';
+import 'package:resume_app/screen/menu/language.dart';
 import 'package:resume_app/screen/menu/objective.dart';
 import 'package:resume_app/screen/menu/personal.dart';
 import 'package:resume_app/screen/menu/reference.dart';
 import 'package:resume_app/screen/menu/skill.dart';
-import 'package:resume_app/screen/project.dart';
+import 'package:resume_app/screen/menu/project.dart';
+
 
 class Resume extends StatefulWidget {
   const Resume({super.key});
@@ -28,10 +31,13 @@ class _ResumeState extends State<Resume> {
               color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
         ),
         leading: InkWell(
-            onTap :() {
+            onTap: () {
               Navigator.of(context).pop();
             },
-            child: Icon(CupertinoIcons.back,color: Colors.white,)),
+            child: Icon(
+              CupertinoIcons.back,
+              color: Colors.white,
+            )),
         actions: [
           Icon(
             Icons.home_filled,
@@ -43,10 +49,15 @@ class _ResumeState extends State<Resume> {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
-            child: Icon(
-              Icons.share,
-              color: Colors.blue,
-              size: 28,
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed('/pdf');
+              },
+              child: Icon(
+                Icons.picture_as_pdf,
+                color: Colors.blue,
+                size: 28,
+              ),
             ),
           ),
         ],
@@ -92,7 +103,7 @@ class _ResumeState extends State<Resume> {
                               ),
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 15,
                             ),
                             Container(
                               height: 30,
@@ -185,7 +196,7 @@ class _ResumeState extends State<Resume> {
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(top: 10.0, left: 5),
+                                  const EdgeInsets.only(top: 15.0, left: 5),
                               child: Row(
                                 children: [
                                   Icon(
@@ -260,15 +271,34 @@ class _ResumeState extends State<Resume> {
                               ),
                             ),
                             Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  '${skills}',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15),
-                                ),
+                              child: Text(
+                                '${skills}',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
                               ),
-                            )
+                            ),
+                            SizedBox(height: 6,),
+                            Container(
+                              height: 30,
+                              width: 155,
+                              decoration: BoxDecoration(color: Colors.orange),
+                              alignment: Alignment.center,
+                              child: Text(
+                                'Languages',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            ...List.generate(
+                                languages.length,
+                                (index) => Center(
+                                      child: Text(
+                                        '${languages[index]}',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ))
                           ],
                         ),
                       ),
@@ -312,9 +342,9 @@ class _ResumeState extends State<Resume> {
                       Text(
                         'Objective',
                         style: TextStyle(
-                            color: Colors.orange.shade50,
+                            color: Colors.orange.shade300,
                             fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.w500),
                       ),
                       Container(
                         height: 55,
@@ -325,88 +355,167 @@ class _ResumeState extends State<Resume> {
                           style: TextStyle(color: Colors.black54, fontSize: 10),
                         ),
                       ),
-                      SizedBox(height: 8,),
+                      SizedBox(
+                        height: 8,
+                      ),
                       Text(
                         'Education',
                         style: TextStyle(
-                            color: Colors.orange,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                            color: Colors.orange.shade300,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
                       ),
                       Column(
-                        children: List.generate(education.length, (index) => Container(
-                          width: 185,
-                          height: 40,
-                          child: ListTile(
-                          title: Text('${education[index].school.text}',style: TextStyle(fontWeight: FontWeight.bold)),
-                          subtitle: Text('${education[index].degree.text}',style: TextStyle(color: Colors.black54),),
-                          trailing: Text('${education[index].firstDate.text} - ${education[index].lastDate.text}',style: TextStyle(color: Colors.blue),),
-                                                ),
-                        ),),
+                        children: List.generate(
+                            education.length,
+                            (index) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text('${education[index].school.text}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black87)),
+                                        SizedBox(
+                                          width: 50,
+                                        ),
+                                        Text(
+                                          '${education[index].firstDate.text} - ${education[index].lastDate.text}',
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
+                                      ],
+                                    ),
+                                    Text('${education[index].degree.text}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black54)),
+                                  ],
+                                )
+                            // ListTile(
+                            //   title:
+                            //   subtitle: Text(
+                            //     '${education[index].degree.text}',
+                            //     style: TextStyle(color: Colors.black54),
+                            //   ),
+                            //   trailing:
+                            // ),
+                            ),
                       ),
-                      SizedBox(height: 8,),
+                      SizedBox(
+                        height: 8,
+                      ),
                       Text(
                         'Experence',
                         style: TextStyle(
-                            color: Colors.orange,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                            color: Colors.orange.shade300,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
                       ),
                       Column(
-                        children: List.generate(experience.length, (index) => Container(
-                          width: 185,
-                          height: 40,
-                          child: ListTile(
-                            title: Text('${experience[index].companyName!.text}',style: TextStyle(fontWeight: FontWeight.bold)),
-                            subtitle: Text('${experience[index].jobtitle!.text}',style: TextStyle(color: Colors.black54),),
-                            trailing: Text('${experience[index].firstDate!.text} - ${experience[index].lastDate!.text}',style: TextStyle(color: Colors.blue),),
-                          ),
-                        ),),
+                        children: List.generate(
+                            experience.length,
+                            (index) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                            '${experience[index].companyName!.text}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black87)),
+                                        SizedBox(
+                                          width: 50,
+                                        ),
+                                        Text(
+                                          '${experience[index].firstDate!.text} - ${experience[index].lastDate!.text}',
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
+                                      ],
+                                    ),
+                                    Text('${experience[index].jobtitle!.text}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black54)),
+                                  ],
+                                )),
                       ),
-                      SizedBox(height: 8,),
+                      SizedBox(
+                        height: 8,
+                      ),
                       Text(
                         'Reference',
                         style: TextStyle(
-                            color: Colors.orange,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                            color: Colors.orange.shade300,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
                       ),
                       Column(
-                        children: List.generate(reference.length, (index) => Container(
-                          width: 185,
-                          height: 40,
-                          child: ListTile(
-                            title: Text('${reference[index].ReferenceName!.text}',style: TextStyle(fontWeight: FontWeight.bold),),
-                            subtitle: Text('${reference[index].companyName!.text}',style: TextStyle(color: Colors.black54),),
-                            trailing: Text('${reference[index].phone!.text}',style: TextStyle(color: Colors.blue),),
-                          ),
-                        ),),
+                        children: List.generate(
+                            reference.length,
+                            (index) => Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                            '${reference[index].ReferenceName!.text}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black87)),
+                                        SizedBox(
+                                          width: 50,
+                                        ),
+                                        Text(
+                                          '${reference[index].phone!.text}',
+                                          style: TextStyle(color: Colors.blue),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                        '${reference[index].companyName!.text}',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black54)),
+                                  ],
+                                )),
                       ),
-                      SizedBox(height: 10,),
-                      Text(
-                        'Projects',
-                        style: TextStyle(
-                            color: Colors.orange,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                      SizedBox(
+                        height: 5,
                       ),
-                      Text(
-                        '${project}',
-                        style: TextStyle(
-                            color: Colors.black, fontSize: 15),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Projects',
+                                style: TextStyle(
+                                    color: Colors.orange.shade300,
+                                    fontSize: 20)),
+                            TextSpan(
+                                text: '${project}',
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 20))
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 5,),
-                      Text(
-                        'Achievement',
-                        style: TextStyle(
-                            color: Colors.orange,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                      SizedBox(
+                        height: 10,
                       ),
-                      Text(
-                        '${achei}',
-                        style: TextStyle(
-                            color: Colors.black, fontSize: 15),
+                      RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                                text: 'Achievement',
+                                style: TextStyle(
+                                    color: Colors.orange.shade300,
+                                    fontSize: 20)),
+                            TextSpan(
+                                text: '${achei}',
+                                style: TextStyle(
+                                    color: Colors.black54, fontSize: 18)),
+                          ],
+                        ),
                       ),
                     ],
                   ),

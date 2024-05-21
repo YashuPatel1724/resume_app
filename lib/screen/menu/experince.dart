@@ -15,7 +15,7 @@ class _ExperienceState extends State<Experience> {
       appBar: AppBar(
         backgroundColor: Color(0xff1C1B1F),
         title: Text(
-          'Education',
+          'Experience',
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         leading: InkWell(

@@ -236,36 +236,36 @@ class _PersonalInfoState extends State<PersonalInfo> {
         //     ),
         //   ),
         // )
-        floatingActionButton: InkWell(
-          onTap: () {
-            bool res = formkey.currentState!.validate();
-            if (res) {
-              first = txtfname.text;
-              last = txtlname.text;
-              profession = txtprof.text;
-              gender = txtgender.text;
-              nation = txtnation.text;
-              BirthDate = txtdate.text;
-              phone = txtphone.text;
-              email = txtemail.text;
-              address = txtaddress.text;
-            }
-          },
-          child: Container(
-            height: 50,
-            width: 90,
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              'View CV',
-              style: TextStyle(color: Colors.white, fontSize: 15),
-            ),
-          ),
-        ),
-        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling);
+        // floatingActionButton: InkWell(
+        //   onTap: () {
+        //     bool res = formkey.currentState!.validate();
+        //     if (res) {
+        //       first = txtfname.text;
+        //       last = txtlname.text;
+        //       profession = txtprof.text;
+        //       gender = txtgender.text;
+        //       nation = txtnation.text;
+        //       BirthDate = txtdate.text;
+        //       phone = txtphone.text;
+        //       email = txtemail.text;
+        //       address = txtaddress.text;
+        //     }
+        //   },
+        //   child: Container(
+        //     height: 50,
+        //     width: 90,
+        //     decoration: BoxDecoration(
+        //       color: Colors.blue,
+        //       borderRadius: BorderRadius.circular(20),
+        //     ),
+        //     alignment: Alignment.center,
+        //     child: Text(
+        //       'View CV',
+        //       style: TextStyle(color: Colors.white, fontSize: 15),
+        //     ),
+        //   ),
+        // ),
+    );
   }
 
   Widget Textfield(

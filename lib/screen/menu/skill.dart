@@ -17,7 +17,7 @@ class _SkillsState extends State<Skills> {
       appBar: AppBar(
         backgroundColor: Color(0xff1C1B1F),
         title: Text(
-          'Education',
+          'Skill',
           style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         leading: InkWell(

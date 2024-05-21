@@ -141,7 +141,11 @@ class _MenuScreenState extends State<MenuScreen> {
               ),
               //more section
 
-              profile(icon: Icons.folder, name: 'Project'),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/pro');
+                },
+                  child: profile(icon: Icons.folder, name: 'Project')),
               //person
               SizedBox(
                 height: 10,
@@ -154,7 +158,11 @@ class _MenuScreenState extends State<MenuScreen> {
                 height: 8,
               ),
 
-              profile(icon: Icons.language, name: 'Language'),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/lan');
+                },
+                  child: profile(icon: Icons.language, name: 'Language')),
               //person
               SizedBox(
                 height: 10,
@@ -167,20 +175,11 @@ class _MenuScreenState extends State<MenuScreen> {
                 height: 8,
               ),
 
-              profile(icon: Icons.star, name: 'Interest'),
-              //person
-              SizedBox(
-                height: 10,
-              ),
-              Divider(
-                color: Colors.white24,
-                thickness: 1,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-
-              profile(icon: Icons.stars, name: 'Achievement'),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/achi');
+                },
+                  child: profile(icon: Icons.stars, name: 'Achievement')),
               //person
               SizedBox(
                 height: 10,
