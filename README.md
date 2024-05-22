@@ -1,4 +1,10 @@
-<h1 align="center">👉 Resume App👈</h1>
+<h1 align="center">👉 Resume App 👈</h1>
+
+<h3 align="center"> Resume App Video </h3>
+<div align="center">
+ <video src="https://github.com/YashuPatel1724/resume_app/assets/148859965/7d430c00-bec8-4474-bacc-647b7814a3d5"> 
+</video>
+</div>
 
 <div align="center">
 <img src='https://github.com/YashuPatel1724/resume_app/assets/148859965/ab539992-abf2-4a97-bfd1-6905c927589c'  width=250>
